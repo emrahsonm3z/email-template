@@ -9,7 +9,6 @@ import { useTranslation } from "../../i18n";
 const handler = nextConnect();
 
 const root = path.resolve("emails");
-const { t } = useTranslation();
 
 handler.post((req, res) => {
   const email = new Email({
@@ -53,7 +52,6 @@ handler.post((req, res) => {
       },
       locals: {
         name: "Emrah Sönmez",
-        asd: t("hi"),
       },
     })
     .then((res) => {

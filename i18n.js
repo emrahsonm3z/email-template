@@ -1,7 +1,6 @@
 const NextI18Next = require("next-i18next").default;
 // const LngDetector = require('i18next-browser-languagedetector').default
 const { localeSubpaths } = require("next/config").default().publicRuntimeConfig;
-const { default: Axios } = require("axios");
 const path = require("path");
 
 const option = {
@@ -23,23 +22,6 @@ const option = {
     bindI18n: "languageChanged",
     // we're NOT using suspsense to detect when the translations have loaded
     useSuspense: false,
-  },
-  backend: {
-    loadPath: "http://localhost:3000/public/static/locales/tr.json",
-    parse: (data) => {
-      return data;
-    },
-    request: (options, url, payload, callback) => {
-      Axios.get(url)
-        .then((res) => {
-          console.log(res.data);
-          callback(null, res);
-        })
-        .catch((err) => {
-          console.log(err);
-          callback(err, null);
-        });
-    },
   },
 };
 module.exports = new NextI18Next(option);
